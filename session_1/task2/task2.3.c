@@ -46,19 +46,65 @@ int main(void) {
     int choice;
     double balance = 100.0;
     double amount;
+	char buffer[100];
+	int check;
 
 	/* Display ATM menu */
 	printf("\nATM Menu\n");
 	printf("1. Check Balance\n");
 	printf("2. Deposit Money\n");
 	printf("3. Withdraw Money\n");
+
 	printf("Enter your choice: ");
-	scanf("%d", &choice);
+	fgets(buffer, 100, stdin);
+	check = sscanf(buffer, "%d", &choice);
+	if (check - 1) {
+		choice = 0;
+	}
 
 	// complete the rest of the code
 	switch (choice) {
-		case :
-			break;
+		case 1:
+			printf("Current balance: %.2f\n", balance);
+
+		case 2:
+			printf("Enter amount to deposit: ");
+			fgets(buffer, 100, stdin);
+			check = sscanf(buffer, "%lf", &amount);
+			if (check - 1) {
+				printf("Invalid input!\n");
+				return 1;
+			}
+
+			if (amount > 0) {
+				balance += amount;
+				printf("Deposited: %.2f", amount);
+				printf("Current balance: %.2f\n", balance);
+			}
+
+			else {
+				printf("Invalid deposit amount!\n");
+			}
+
+		case 3:
+			printf("Enter amount to withdraw: ");
+			fgets(buffer, 100, stdin);
+			check = sscanf(buffer, "%lf", &amount);
+			if (check - 1) {
+				printf("Invalid Input!\n");
+				return 1;
+			}
+
+			if (amount > 0 && amount <= balance) {
+				balance -= amount;
+				printf("Withdrawn: %.2f\n", amount);
+				printf("Current balance: %2f\n", balance);
+			}
+
+			else {
+				printf("Insufficient balance or invalid amount\n");
+			}
+		
 		default:
 			printf("Invalid choice. Please try again.\n");
 	}

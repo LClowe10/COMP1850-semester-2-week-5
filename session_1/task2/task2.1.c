@@ -30,6 +30,7 @@ int main(int argc, char *argv[]) {
     float num1, num2;
     char operation;
     float result;
+    int check;
     
     // Check if the correct number of arguments is provided
     if (argc != 4) {
@@ -42,13 +43,36 @@ int main(int argc, char *argv[]) {
     // Convert command-line arguments to numbers and operation
     // atof() converts a string (ASCII) to a floating-point (float) number
     num1 = atof(argv[1]);  // Convert first argument to float
+    check = sscanf(argv[1], "%f", &num1);
+    if (check - 1) {
+        return 1;
+    }
+
     operation = argv[2][0];  // Just take the first character of the second argument
     num2 = atof(argv[3]);  // Convert third argument to float
+    check = sscanf(argv[3], "%f", &num2);
+    if (check - 1) {
+        return 1;
+    }
     
     // Complete your code here
 	switch(operation){
-		case :
+		case '+':
+            result = num1 + num2;
             break;
+
+        case '-':
+            result = num1 - num2;
+            break;
+
+        case 'x':
+            result = num1 * num2;
+            break;
+
+        case '/':
+            result = num1 / num2;
+            break;
+
 		default:
 			printf("Operation not defined!\n");
 	}

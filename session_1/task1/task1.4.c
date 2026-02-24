@@ -21,17 +21,43 @@ int main(void) {
 	float order_amount;
 	int is_premium;
 	int is_blacklisted;
+    char buffer[100];
+    int check;
 	
 	printf("Enter order amount: ");
-    scanf("%f", &order_amount);
+    fgets(buffer, 100, stdin);
+    check = sscanf(buffer, "%f", &order_amount);
+
+    if (check - 1 || order_amount < 0) {
+		printf("Invalid Input!\n");
+		return 1;
+	}
 	
 	printf("Is customer a premium member? (1 = Yes, 0 = No): ");
-    scanf("%d", &is_premium);
+    fgets(buffer, 100, stdin);
+    check = sscanf(buffer, "%d", &is_premium);
+
+    if (check - 1 || (is_premium != 0 && is_premium != 1)) {
+		printf("Invalid Input!\n");
+		return 1;
+	}
 	
 	printf("Is customer blacklisted? (1 = Yes, 0 = No): ");
-    scanf("%d", &is_blacklisted);
+    fgets(buffer, 100, stdin);
+    check = sscanf(buffer, "%d", &is_blacklisted);
+
+    if (check - 1 || (is_blacklisted != 0 && is_blacklisted != 1)) {
+		printf("Invalid Input!\n");
+		return 1;
+	}
 	
-	// Complete the rest of the code
+	if ((order_amount > 100 || is_premium) && !is_blacklisted) {
+       printf("Discount Applied\n");
+    }
+
+   else {
+       printf("No Discount\n");
+   }
 
 	return 0;
 }

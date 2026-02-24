@@ -24,12 +24,20 @@
 int main(void) {
 	
     int year;
+	char buffer[100];
+	int check;
 	
     printf("Enter year: ");
-    scanf("%d", &year);
+	fgets(buffer, 100, stdin);
+    check = sscanf(buffer, "%d", &year);
+
+	if (check - 1) {
+		printf("Invalid Input!\n");
+		return 1;
+	}
 	
 	// Complete your code here
-	if (){  // todo
+	if (year % 4 == 0 || year % 400 == 0) {
 		printf("Leap Year\n");
 	} else{
 		printf("Not a Leap Year\n");

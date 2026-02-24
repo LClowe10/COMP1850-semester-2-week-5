@@ -49,6 +49,7 @@ int main(void) {
     int customerType;
 
     printf("Enter units consumed: ");
+    fgets(buffer, 100, stdin);
     scanf("%f", &units);
 
     printf("Enter customer type (1-Domestic, 2-Commercial, 3-Industrial): ");
