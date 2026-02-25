@@ -20,8 +20,7 @@ int main(void)
 	// Getting the value from the user
 	printf("Enter a hexadecimal: ");
 	fgets(buffer, 100, stdin);
-	check = sscanf(buffer, "%c", hex);
-	printf("%s\n", hex);
+	check = sscanf(buffer, "%s", hex);
 	// Validation for the amount of arguments passed
 	if (check - 1) 
 	{
@@ -37,28 +36,31 @@ int main(void)
 		return 1;
 	}
 
+	// For loop to loop through the input and calculate the decimal
 	for (int count = 0; count < length; count++)
 	{
-		printf("%d\n", hex[0]);
-		printf("%ld\n", decimal);
+		// Compares the ascii for numbers
 		if ((hex[count] >= 48) && (hex[count] <= 57))
 		{
 			decimal += (hex[count] - 48) * pow(16, length - (count + 1));
 			continue;
 		}
 
+		// Else if the character is compared against lowercase ascii
 		else if ((hex[count] >= 65) && (hex[count] <= 70))
 		{
 			decimal += (hex[count] - 55) * pow(16, length - (count + 1));
 			continue;
 		}
 
+		// Else if the character is compared against uppercase ascii
 		else if ((hex[count] >= 97) && (hex[count] <= 102))
 		{
 			decimal += (hex[count] - 87) * pow(16, length - (count + 1));
 			continue;
 		}
 
+		// If an invalid character is reached then the program terminates
 		else
 		{
 			printf("Error: Invalid Hexadecimal\n");
