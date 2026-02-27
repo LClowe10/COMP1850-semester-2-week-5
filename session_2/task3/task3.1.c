@@ -27,34 +27,38 @@ int main(void) {
     
     // TODO: Generate a random number between min and max
     // Hint: target = min + rand() % (max - min + 1);
+    target = min + rand() % (max - min + 1);
     
     // TODO: Implement the main game loop
     // This should continue until the person decides to quit
-    
+    do 
+    {
         // Reset number of guesses for a new game
         num_guesses = 0;
         
         // TODO: Implement the guessing loop
         // This should continue until the correct number is guessed
         
-            printf("Enter your guess: ");
-            
-            // TODO: Read and process the input
-            // Use fgets() to read input
-            // Use atoi() to convert to integer
-            
-            num_guesses++;
-            
-            // TODO: Check if the guess is correct, too high, or too low
-            // Provide appropriate in-game feedback
-            
-            // TODO: Offer a hint after several failed attempts
-            
+        printf("Enter your guess: ");
+        fgets(input, 20, stdin);
+        
+        // TODO: Read and process the input
+        // Use fgets() to read input
+        // Use atoi() to convert to integer
+        
+        num_guesses++;
+        
+        // TODO: Check if the guess is correct, too high, or too low
+        // Provide appropriate in-game feedback
+        
+        // TODO: Offer a hint after several failed attempts
+        
         
         // TODO: Ask if the person wants to play again
         // Update the 'playing' flag based on the answer
-    
-    
+    } while (playing == 1);
+        
+        
     printf("\nThanks for playing!\n");
     return 0;
 }

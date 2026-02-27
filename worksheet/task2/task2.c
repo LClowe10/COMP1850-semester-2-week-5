@@ -22,7 +22,7 @@ int main(void)
 	fgets(buffer, 100, stdin);
 	check = sscanf(buffer, "%s", hex);
 	// Validation for the amount of arguments passed
-	if (check - 1) 
+	if (check - 1)
 	{
 		printf("Invalid Input\n");
 		return 1;

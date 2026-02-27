@@ -20,27 +20,55 @@ int main(void) {
     
     // TODO: Keep asking until valid input is provided
     // Use an appropriate loop structure
-    
+
+    while (valid_input == 0) 
+    {
         printf("Enter temperature with scale (e.g., 23.5C or 75F): ");
+        // Use fgets to read the input
+        fgets(input, 50, stdin);
+        // Remove the newline character from input
+        input[strcspn(input, "\n")] = 0;
+        // Parse the input to extract temperature and scale
+        sscanf(input, "%f%c", &temperature, &scale);
+        // Convert scale to uppercase for easier comparison
+        scale = toupper(scale);
+        // Validate the scale (must be 'C', 'c', 'F', or 'f')
+        // If input is valid, set valid_input = 1
+        if (scale == 'C' || scale == 'F')
+        {
+            valid_input = 1;
+        }
+
+        // If invalid, print an error message
+        else 
+        {
+            printf("Invalid Input");
+            return 1;
+        }
+
         
-        // TODO: Use fgets to read the input
-        
-        // TODO: Remove the newline character from input
         // Hint: input[strcspn(input, "\n")] = 0;
         
-        // TODO: Parse the input to extract temperature and scale
         // Hint: Use sscanf(input, "%f%c", &temperature, &scale);
         // Advanced: Consider handling input with a degree symbol (°)
         
-        // TODO: Validate the scale (must be 'C', 'c', 'F', or 'f')
-        // Convert scale to uppercase for easier comparison
         // Hint: scale = toupper(scale); // toupper() converts 'c' to 'C', 'f' to 'F'
         // Note: In Python, you'd use string method: scale = scale.upper()
         
-        // TODO: If input is valid, set valid_input = 1
-        // If invalid, print an error message
+
+    }
     
-    
+    if (scale == 'C')
+    {
+        converted_temp = temperature * (9 / 5) + 32;
+    }
+
+    else if (scale == 'F') 
+    {
+        converted_temp = (temperature - 32) * (5 / 9);
+    }
+
+    printf("%.1f°C is equal to %.1f°F\n", temperature, converted_temp);
     // TODO: Perform conversion based on the input scale
     // - If Celsius, convert to Fahrenheit: F = C * 9/5 + 32
     // - If Fahrenheit, convert to Celsius: C = (F - 32) * 5/9
